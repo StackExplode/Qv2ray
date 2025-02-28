@@ -23,13 +23,13 @@ jobs:
           echo "message=\"$(git log --format=%B -n 1 ${{ github.event.after }} | tr '\n' ' ')\"" >> $GITHUB_ENV
   build:
     needs: check_commit_msg
-    if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
+    if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT6') }}
     strategy:
       matrix:
         platform: [macos-13]
         arch: [x64]
         build_type: [Release]
-        qt_version: [5.15.0]
+        qt_version: [6.7.3]
       fail-fast: false
 
     runs-on: ${{ matrix.platform }}
@@ -47,10 +47,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      #- name: Install Python 3.7 version
-      #  uses: actions/setup-python@v1
-      # with:
-      #      python-version: '3.7'
+      - name: Install Python 3.7 version
+        uses: actions/setup-python@v1
+        with:
+            python-version: '3.7'
       #      architecture: ${{ matrix.arch }}
       # =========================================================================================================
       # =========================================================================================================
@@ -61,9 +61,9 @@ jobs:
          #brew install protobuf grpc ninja pkg-config openssl
          
          brew install qt protobuf grpc ninja pkg-config openssl
-         export LDFLAGS="-L/usr/local/opt/qt@5/lib"
-         export CPPFLAGS="-I/usr/local/opt/qt@5/include"
-         export PKG_CONFIG_PATH="/usr/local/opt/qt@5/lib/pkgconfig"
+         #export LDFLAGS="-L/usr/local/opt/qt@5/lib"
+         #export CPPFLAGS="-I/usr/local/opt/qt@5/include"
+         #export PKG_CONFIG_PATH="/usr/local/opt/qt@5/lib/pkgconfig"
 
          #arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
          #export PATH="/usr/local/homebrew/bin:$PATH"
@@ -92,7 +92,7 @@ jobs:
             -DQV2RAY_USE_V5_CORE=ON \
             -DQV2RAY_DEFAULT_VASSETS_PATH=/usr/local/opt/v2ray/share/v2ray \
             -DQV2RAY_DEFAULT_VCORE_PATH=/usr/local/opt/v2ray/bin/v2ray \
-            #-DQV2RAY_QT6=ON \
+            -DQV2RAY_QT6=ON \
             #-DCMAKE_OSX_ARCHITECTURES=x86_64 \
             #-DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt6/5.15.16/
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
