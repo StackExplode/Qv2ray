@@ -13,7 +13,7 @@ jobs:
     outputs:
       commit_message: ${{ steps.get_message.outputs.message }}
     name: Check if the workflow has been disabled.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - name: Get commit message
@@ -47,10 +47,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - name: Install Python 3.8 version
+      - name: Install Python 3.7 version
         uses: actions/setup-python@v1
         with:
-            python-version: '3.8'
+            python-version: '3.7'
             architecture: ${{ matrix.arch }}
       # =========================================================================================================
       # =========================================================================================================
