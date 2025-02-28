@@ -59,7 +59,12 @@ jobs:
         if: matrix.platform == 'macos-13'
         run: |
          #brew install protobuf grpc ninja pkg-config openssl
-         brew install qt5 protobuf grpc ninja pkg-config openssl
+         
+         brew install qt protobuf grpc ninja pkg-config openssl
+         export LDFLAGS="-L/usr/local/opt/qt@5/lib"
+         export CPPFLAGS="-I/usr/local/opt/qt@5/include"
+         export PKG_CONFIG_PATH="/usr/local/opt/qt@5/lib/pkgconfig"
+
          #arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
          #export PATH="/usr/local/homebrew/bin:$PATH"
          #arch -x86_64 brew install qt
