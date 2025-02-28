@@ -28,7 +28,7 @@ jobs:
       matrix:
         platform: [macos-latest]
         arch: [x64]
-        build_type: [RelWithDebInfo, Release]
+        build_type: [Release]
         qt_version: [5.15.0]
       fail-fast: false
 
@@ -47,10 +47,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - name: Install Python 3.7 version
+      - name: Install Python 3.8 version
         uses: actions/setup-python@v1
         with:
-            python-version: '3.7'
+            python-version: '3.8'
             architecture: ${{ matrix.arch }}
       # =========================================================================================================
       # =========================================================================================================
