@@ -29,7 +29,7 @@ jobs:
         platform: [macos-latest]
         arch: [x64]
         build_type: [Release]
-        qt_version: [5.15.0]
+        qt_version: [5.15.16]
       fail-fast: false
 
     runs-on: ${{ matrix.platform }}
@@ -57,7 +57,7 @@ jobs:
       # --------------------------------------------------------
       - name: macOS - ${{ matrix.qt_version }} - Build preparation - Install Packages
         if: matrix.platform == 'macos-latest'
-        run: brew install qt protobuf grpc ninja pkg-config openssl
+        run: brew install qt5 protobuf grpc ninja pkg-config openssl
       # --------------------------------------------------------
       # ========================================================================================================= Generate MakeFile and Build
       - uses: actions/setup-node@v3
@@ -82,7 +82,7 @@ jobs:
             -DQV2RAY_USE_V5_CORE=ON \
             -DQV2RAY_DEFAULT_VASSETS_PATH=/usr/local/opt/v2ray/share/v2ray \
             -DQV2RAY_DEFAULT_VCORE_PATH=/usr/local/opt/v2ray/bin/v2ray \
-            -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.15.0/
+            -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.15.16/
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
           sudo cmake --install .
           appdmg ../assets/package_dmg.json ../Qv2ray.dmg
