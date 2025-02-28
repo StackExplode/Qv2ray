@@ -69,7 +69,7 @@ jobs:
          cd macdeployqt-patched
          mkdir build; cd build;
          cmake .. -DCMAKE_BUILD_TYPE=Release; cmake --build .
-         cp -v ./macdeployqt ${Qt6_DIR}/bin/macdeployqt
+         cp -v ./macdeployqt /usr/local/Cellar/qt/6.8.2/bin/macdeployqt
 
 
          #arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -117,7 +117,7 @@ jobs:
           path: Qv2ray.dmg
       - name: macOS - ${{ matrix.qt_version }} - Upload binaries to release
         uses: svenstaro/upload-release-action@v1-release
-        if: github.event_name == 'release' && matrix.platform == 'macos-13' && matrix.qt_version == '6.7.3' && matrix.build_type == 'Release'
+        if: github.event_name == 'release' && matrix.platform == 'macos-13' && matrix.qt_version == '6.8.2' && matrix.build_type == 'Release'
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: Qv2ray.dmg
