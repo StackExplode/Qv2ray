@@ -109,12 +109,12 @@ jobs:
 
           SAVE_PWD=$(pwd)
           echo $(pwd)
-          echo $CMAKE_INSTALL_PREFIX
-          cd $CMAKE_INSTALL_PREFIX
+          cd installed
           echo $(ls .)
           current_dir=./qv2ray.app/Contents/Frameworks
           for file in "$current_dir"/*; do
             if [ -f "$file" ]; then
+            echo $file
             install_name_tool -rpath "@loader_path/../lib" "@loader_path/../Frameworks" "$file"
             fi
           done
