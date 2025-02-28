@@ -77,7 +77,7 @@ jobs:
           cmake .. -GNinja \
             -DCMAKE_INSTALL_PREFIX=installed \
             -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
-            -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
             -DDS_STORE_SCRIPT=ON \
             -DQV2RAY_USE_V5_CORE=ON \
             -DQV2RAY_DEFAULT_VASSETS_PATH=/usr/local/opt/v2ray/share/v2ray \
