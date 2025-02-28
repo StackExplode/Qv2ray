@@ -109,16 +109,20 @@ jobs:
 
           SAVE_PWD=$(pwd)
           echo $(pwd)
+          #cd installed
+          #echo $(ls .)
+          #current_dir=./qv2ray.app/Contents/Frameworks
+          #sudo xcode-select --reset
+          #for file in "$current_dir"/*; do
+          #  if [ -f "$file" ]; then
+          #  echo $file
+          #  install_name_tool -rpath "@loader_path/../lib" "@loader_path/../Frameworks" "$file"
+          #  fi
+          #done
+          #cd $SAVE_PWD
+
           cd installed
-          echo $(ls .)
-          current_dir=./qv2ray.app/Contents/Frameworks
-          sudo xcode-select --reset
-          for file in "$current_dir"/*; do
-            if [ -f "$file" ]; then
-            echo $file
-            install_name_tool -rpath "@loader_path/../lib" "@loader_path/../Frameworks" "$file"
-            fi
-          done
+          macdeployqt qv2ray.app
           cd $SAVE_PWD
           
           appdmg ../assets/package_dmg.json ../Qv2ray.dmg
