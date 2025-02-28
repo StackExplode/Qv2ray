@@ -23,13 +23,13 @@ jobs:
           echo "message=\"$(git log --format=%B -n 1 ${{ github.event.after }} | tr '\n' ' ')\"" >> $GITHUB_ENV
   build:
     needs: check_commit_msg
-    if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT6') }}
+    if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT5') }}
     strategy:
       matrix:
         platform: [macos-13]
         arch: [x64]
         build_type: [Release]
-        qt_version: [6.7.3]
+        qt_version: [5.15.0]
       fail-fast: false
 
     runs-on: ${{ matrix.platform }}
@@ -59,7 +59,7 @@ jobs:
         if: matrix.platform == 'macos-13'
         run: |
          #brew install protobuf grpc ninja pkg-config openssl
-         brew install qt protobuf grpc ninja pkg-config openssl
+         brew install qt5 protobuf grpc ninja pkg-config openssl
          #arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
          #export PATH="/usr/local/homebrew/bin:$PATH"
          #arch -x86_64 brew install qt
@@ -87,7 +87,7 @@ jobs:
             -DQV2RAY_USE_V5_CORE=ON \
             -DQV2RAY_DEFAULT_VASSETS_PATH=/usr/local/opt/v2ray/share/v2ray \
             -DQV2RAY_DEFAULT_VCORE_PATH=/usr/local/opt/v2ray/bin/v2ray \
-            -DQV2RAY_QT6=ON \
+            #-DQV2RAY_QT6=ON \
             #-DCMAKE_OSX_ARCHITECTURES=x86_64 \
             #-DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt6/5.15.16/
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
