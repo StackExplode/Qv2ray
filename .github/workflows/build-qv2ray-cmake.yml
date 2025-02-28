@@ -122,7 +122,8 @@ jobs:
           #cd $SAVE_PWD
 
           cd installed
-          macdeployqt qv2ray.app
+          echo $(ls .)
+          sudo macdeployqt qv2ray.app
           cd $SAVE_PWD
           
           appdmg ../assets/package_dmg.json ../Qv2ray.dmg
