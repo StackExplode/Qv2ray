@@ -65,7 +65,7 @@ jobs:
          #export CPPFLAGS="-I/usr/local/opt/qt@5/include"
          #export PKG_CONFIG_PATH="/usr/local/opt/qt@5/lib/pkgconfig"
 
-         rehash
+         QTDIR=$(which macdeployqt)
          echo $QTDIR
          git clone https://github.com/Qv2ray/macdeployqt-patched
          cd macdeployqt-patched
