@@ -69,7 +69,7 @@ jobs:
          cd macdeployqt-patched
          mkdir build; cd build;
          cmake .. -DCMAKE_BUILD_TYPE=Release; cmake --build .
-         cp -v ./macdeployqt /usr/local/Cellar/qt/6.8.2/bin/macdeployqt
+         cp -v ./macdeployqt /usr/local/Cellar/qt/6.7.3/bin/macdeployqt
 
 
          #arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
