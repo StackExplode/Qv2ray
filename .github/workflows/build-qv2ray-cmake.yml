@@ -13,7 +13,7 @@ jobs:
     outputs:
       commit_message: ${{ steps.get_message.outputs.message }}
     name: Check if the workflow has been disabled.
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Get commit message
