@@ -26,7 +26,7 @@ jobs:
     if: ${{ !contains( needs.check_commit_msg.outputs.commit_message, '!QT6') }}
     strategy:
       matrix:
-        platform: [macos-13]
+        platform: [macos-13.*]
         arch: [x64]
         build_type: [Release]
         qt_version: [6.7.3]
