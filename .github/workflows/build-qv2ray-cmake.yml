@@ -71,7 +71,7 @@ jobs:
          cd macdeployqt-patched
          mkdir build; cd build;
          cmake .. -DCMAKE_BUILD_TYPE=Release; cmake --build .
-         sudo cp -v ./macdeployqt ${QTDIR}/bin/macdeployqt
+         sudo cp -v ./macdeployqt ${QTDIR}
 
 
          #arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
