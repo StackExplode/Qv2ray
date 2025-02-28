@@ -81,7 +81,8 @@ jobs:
             -DDS_STORE_SCRIPT=ON \
             -DQV2RAY_USE_V5_CORE=ON \
             -DQV2RAY_DEFAULT_VASSETS_PATH=/usr/local/opt/v2ray/share/v2ray \
-            -DQV2RAY_DEFAULT_VCORE_PATH=/usr/local/opt/v2ray/bin/v2ray
+            -DQV2RAY_DEFAULT_VCORE_PATH=/usr/local/opt/v2ray/bin/v2ray \
+            -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.15.0/
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
           sudo cmake --install .
           appdmg ../assets/package_dmg.json ../Qv2ray.dmg
