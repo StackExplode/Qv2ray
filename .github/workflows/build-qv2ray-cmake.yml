@@ -112,6 +112,7 @@ jobs:
           cd installed
           echo $(ls .)
           current_dir=./qv2ray.app/Contents/Frameworks
+          sudo xcode-select --reset
           for file in "$current_dir"/*; do
             if [ -f "$file" ]; then
             echo $file
