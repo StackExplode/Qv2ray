@@ -106,7 +106,10 @@ jobs:
             #-DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt6/5.15.16/
           cmake --build . --parallel $(sysctl -n hw.logicalcpu)
           sudo cmake --install .
-          
+
+          SAVE_PWD=$(pwd)
+          echo $(pwd)
+          echo $CMAKE_INSTALL_PREFIX
           cd $CMAKE_INSTALL_PREFIX
           echo $(ls .)
           current_dir=./qv2ray.app/Contents/Frameworks
@@ -115,6 +118,7 @@ jobs:
             install_name_tool -rpath "@loader_path/../lib" "@loader_path/../Frameworks" "$file"
             fi
           done
+          cd $SAVE_PWD
           
           appdmg ../assets/package_dmg.json ../Qv2ray.dmg
       # --------------------------------------------------------
