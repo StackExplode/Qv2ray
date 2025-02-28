@@ -57,7 +57,11 @@ jobs:
       # --------------------------------------------------------
       - name: macOS - ${{ matrix.qt_version }} - Build preparation - Install Packages
         if: matrix.platform == 'macos-latest'
-        run: brew install qt protobuf grpc ninja pkg-config openssl
+        run: |
+         arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+         export PATH="/opt/homebrew/bin:$PATH"
+         brew install protobuf grpc ninja pkg-config openssl
+         arch -x86_64 brew install qt
       # --------------------------------------------------------
       # ========================================================================================================= Generate MakeFile and Build
       - uses: actions/setup-node@v3
